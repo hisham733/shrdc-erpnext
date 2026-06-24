@@ -43,6 +43,36 @@ Once complete (5-10 min), access at **http://localhost:8080**
 | SQL Accounting | SQL accounting software |
 | E Invoice ERP | E-invoicing (LHDN) |
 
+## Update
+
+When a new image version is released, update without data loss:
+
+```bash
+cd shrdc-erpnext
+docker compose -f shrdc-compose.yml pull
+docker compose -f shrdc-compose.yml up -d
+```
+
+The `create-site` service detects the site already exists and exits. All other services (backend, frontend, workers, queues, scheduler) restart with the new image. **All data in the database and site files is preserved.**
+
+### Sync Workspace & Fixture Changes
+
+If the update includes new workspaces (like autocount icon or e_invoice_erp workspace), run:
+
+```bash
+docker compose -f shrdc-compose.yml exec backend bench --site frontend migrate
+```
+
+This applies any workspace JSON, custom field, or fixture changes to the existing site without data loss.
+
+### Backup Before Update (Recommended)
+
+```bash
+docker compose -f shrdc-compose.yml exec backend bench --site frontend backup
+```
+
+Backups are stored in `sites/frontend/private/backups/` inside the Docker volume.
+
 ## Custom Port
 
 If port 8080 is in use, edit `shrdc-erpnext/shrdc-compose.yml` and change:
