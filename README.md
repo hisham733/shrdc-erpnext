@@ -9,23 +9,16 @@ Custom ERPNext v15 with all SHRDC apps pre-installed. Single-command deployment.
 
 ## Quick Start
 
-### Linux / macOS / cmd.exe (Windows)
-
 ```bash
-curl -O https://raw.githubusercontent.com/hisham733/shrdc-erpnext/main/shrdc-compose.yml
-docker compose -f shrdc-compose.yml up -d
-```
-
-### PowerShell (Windows)
-
-```powershell
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/hisham733/shrdc-erpnext/main/shrdc-compose.yml -OutFile shrdc-compose.yml
+git clone https://github.com/hisham733/shrdc-erpnext.git
+cd shrdc-erpnext
 docker compose -f shrdc-compose.yml up -d
 ```
 
 Wait for the site to be created:
 
 ```bash
+cd shrdc-erpnext
 docker compose -f shrdc-compose.yml logs create-site -f
 ```
 
@@ -52,7 +45,7 @@ Once complete (5-10 min), access at **http://localhost:8080**
 
 ## Custom Port
 
-If port 8080 is in use, edit `shrdc-compose.yml` and change:
+If port 8080 is in use, edit `shrdc-erpnext/shrdc-compose.yml` and change:
 
 ```yaml
     ports:
@@ -64,11 +57,13 @@ Then access at http://localhost:8081.
 ## Stop
 
 ```bash
+cd shrdc-erpnext
 docker compose -f shrdc-compose.yml down
 ```
 
 To remove all data:
 
 ```bash
+cd shrdc-erpnext
 docker compose -f shrdc-compose.yml down -v
 ```
