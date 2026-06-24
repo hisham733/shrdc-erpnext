@@ -9,8 +9,17 @@ Custom ERPNext v15 with all SHRDC apps pre-installed. Single-command deployment.
 
 ## Quick Start
 
+### Linux / macOS / cmd.exe (Windows)
+
 ```bash
 curl -O https://raw.githubusercontent.com/hisham733/shrdc-erpnext/main/shrdc-compose.yml
+docker compose -f shrdc-compose.yml up -d
+```
+
+### PowerShell (Windows)
+
+```powershell
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/hisham733/shrdc-erpnext/main/shrdc-compose.yml -OutFile shrdc-compose.yml
 docker compose -f shrdc-compose.yml up -d
 ```
 
